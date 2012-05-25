@@ -5,8 +5,10 @@ reload!() {
 source $ZDOTDIR/.zshrc
 }
 
-# ZLE
+# zle
 bindkey -e
+# setup zle color
+# document zle marks,yank and paste
 
 # local zshrc
 [ -e $ZDOTDIR/.zshrc.local ] && source $ZDOTDIR/.zshrc.local
