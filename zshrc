@@ -22,5 +22,29 @@ compinit
 # zstyle ':completion:function:completer:command:argument:tag' style style-options
 zstyle ':completion:*:default' menu select=3
 
+# aliases
+#coolls() {
+#  ls --color=always -h $* | less
+#}
+alias ls='ls --color=always -h'
+alias ll='ls -l'
+alias la='ls -la'
+
+alias df='df -h'
+alias du='du -h'
+
+alias -g Less='| less'
+
+alias -g H='-h | less'
+alias -g Help='--help | less'
+
+alias grep='grep --color=auto --line-number'
+alias -g Grep='| grep'
+
+# environment variables
+export LESS='--no-init --quit-if-one-screen --ignore-case --RAW-CONTROL-CHARS --chop-long-lines'
+
+# zsh prompt
+
 # local zshrc
 [ -e $ZDOTDIR/.zshrc.local ] && source $ZDOTDIR/.zshrc.local
