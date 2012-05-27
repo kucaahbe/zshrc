@@ -1,4 +1,5 @@
 # vim ft:sh
+
 ZDOTDIR=$HOME
 
 # 'export' should presents, it allows env. variables to be used by other programms
@@ -11,4 +12,6 @@ PATH=/bin:/usr/bin
 [ -e $ZDOTDIR/.zshenv.local ] && source $ZDOTDIR/.zshenv.local
 
 # ~/bin should be before any other path
-export PATH=$HOME/bin:$PATH
+[ -z "$HOME" ] || PATH=$HOME/bin:$PATH
+
+export PATH
