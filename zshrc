@@ -8,7 +8,13 @@ source $ZDOTDIR/.zshrc
 # zle
 bindkey -e
 # setup zle color
-# document zle marks,yank and paste
+zle_highlight=(
+  default:fg=cyan,bg=default,bold
+  isearch:fg=green,bg=default,standout
+  region:fg=cyan,bg=default,bold,standout
+  suffix:fg=default,bg=default,standout
+  special:fg=red,bg=default,bold
+  )
 
 # compsys
 autoload  -U compinit
