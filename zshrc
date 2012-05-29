@@ -73,6 +73,8 @@ setopt APPEND_HISTORY
 setopt HIST_IGNORE_DUPS
 # keyboard
 #KEYBOARD_HACK='\' # to replace annoying characters from the end of commandline
+# chars that are part of the word, default: '*?_-.[]~=/&;!#$%^(){}<>'
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 # zsh prompt
 
 # local zshrc
