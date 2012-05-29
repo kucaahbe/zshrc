@@ -47,7 +47,7 @@ alias -g Help='--help | less'
 alias grep='grep --color=auto --line-number'
 alias -g Grep='| grep'
 
-# environment variables
+# environment variables and zsh parameters
 export LESS='--no-init --quit-if-one-screen --ignore-case --RAW-CONTROL-CHARS --chop-long-lines'
 # coloring man pages for `less`
 export LESS_TERMCAP_mb=$'\E[01;31m'      # begin blinking
@@ -65,7 +65,12 @@ else
   EDITOR=vim
 fi
 export EDITOR
-
+# history
+HISTFILE=$ZDOTDIR/.zsh_history
+HISTSIZE=1000
+SAVEHIST=1000
+setopt APPEND_HISTORY
+setopt HIST_IGNORE_DUPS
 # zsh prompt
 
 # local zshrc
