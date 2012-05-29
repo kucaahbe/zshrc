@@ -71,6 +71,8 @@ HISTSIZE=1000
 SAVEHIST=1000
 setopt APPEND_HISTORY
 setopt HIST_IGNORE_DUPS
+# keyboard
+#KEYBOARD_HACK='\' # to replace annoying characters from the end of commandline
 # zsh prompt
 
 # local zshrc
