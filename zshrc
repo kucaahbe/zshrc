@@ -84,19 +84,19 @@ RPS1=$'%F{red}%(?..(%?%))%f%1(j.[%j].)'
 
 # hooks
 # set xterm title
-term_title_pts="[%y%1(j.:%j.)]"
-term_title_dir="(%21<...<%~)"
+term_title_dir="%1~"
+term_title_pts="%y%1(j.:%j.)"
 precmd() {
   case $TERM in
     xterm*)
-      print -Pn "\e]0;$term_title_pts $term_title_dir\a"
+      print -Pn "\e]0;$term_title_dir - $term_title_pts\a"
       ;;
   esac
 }
 preexec() {
   case $TERM in
     xterm*)
-      print -Pn "\e]0;[%20>..] (>${2}] $term_title_dir\a"
+      print -Pn "\e]0;($term_title_dir) %20>..>$1%<< \a"
       ;;
   esac
 }
