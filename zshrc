@@ -47,6 +47,8 @@ alias -g Help='--help | less'
 alias grep='grep --color=auto'
 alias -g Grep='| grep'
 
+alias gt='git'
+
 # environment variables and zsh parameters
 export LESS='--no-init --quit-if-one-screen --ignore-case --RAW-CONTROL-CHARS --chop-long-lines'
 # coloring man pages for `less`
