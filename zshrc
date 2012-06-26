@@ -44,7 +44,7 @@ alias -g Less='| less'
 alias -g H='-h | less'
 alias -g Help='--help | less'
 
-alias grep='grep --color=auto --line-number'
+alias grep='grep --color=auto'
 alias -g Grep='| grep'
 
 # environment variables and zsh parameters
