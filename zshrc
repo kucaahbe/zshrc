@@ -77,7 +77,8 @@ setopt HIST_IGNORE_DUPS
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 # zsh prompt
 #setopt PROMPT_SUBST
-PS1=$'%B[%b%F{green}%n%f%B%F{white}@%f%b%F{green}%m%f %F{yellow}%~%f%B]%b jobs:%j\n%F{red}%(?..(%?%))%f %B%(!.%F{red}.%F{magenta})%#%f%b%E '
+PS1=$'%B[%b%F{green}%n%f%B%F{white}@%f%b%F{green}%m%f %F{yellow}%~%f%B]%b\n %B%(!.%F{red}.%F{magenta})%#%f%b%E '
+RPS1=$'%F{red}%(?..(%?%))%f%1(j.[%j].)'
 
 # local zshrc
 [ -e $ZDOTDIR/.zshrc.local ] && source $ZDOTDIR/.zshrc.local
