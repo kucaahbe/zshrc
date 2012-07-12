@@ -6,7 +6,7 @@ ZDOTDIR=$HOME
 export LANG=en_US.UTF-8
 
 # comment file /etc/zsh/zprofile in ArchLinux
-PATH=/bin:/usr/bin
+PATH=/bin:/usr/bin:/sbin
 
 # local zshenv
 [ -e $ZDOTDIR/.zshenv.local ] && source $ZDOTDIR/.zshenv.local
