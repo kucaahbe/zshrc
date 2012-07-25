@@ -81,9 +81,16 @@ setopt HIST_IGNORE_DUPS
 # chars that are part of the word, default: '*?_-.[]~=/&;!#$%^(){}<>' (removed "/")
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 # zsh prompt
-#setopt PROMPT_SUBST
-PS1=$'%B[%b%F{green}%n%f%B%F{white}@%f%b%F{green}%m%f %F{yellow}%~%f%B]%b\n %B%(!.%F{red}.%F{magenta})%#%f%b%E '
+setopt PROMPT_SUBST
+PS1=$'%B[%b%F{green}%n%f%B%F{white}@%f%b%F{green}%m%f %F{yellow}%~%f%B]%b ${vcs_info_msg_0_}\n %B%(!.%F{red}.%F{magenta})%#%f%b%E '
 RPS1=$'%F{red}%(?..(%?%))%f%1(j.[%j].)'
+# VCS info
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' actionformats \
+  '%s:%F{magenta}[%f%F{green}%b%f%F{red}|%a%f%F{magenta}]%f'
+zstyle ':vcs_info:*' formats       \
+  '%s:%F{magenta}[%f%F{green}%b%f%F{magenta}]%f'
 
 # hooks
 # set xterm title
@@ -95,6 +102,8 @@ precmd() {
       print -Pn "\e]0;$term_title_dir - $term_title_pts\a"
       ;;
   esac
+
+  vcs_info
 }
 preexec() {
   case $TERM in
