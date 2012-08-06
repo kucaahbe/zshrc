@@ -24,7 +24,7 @@ export LC_IDENTIFICATION
 export LC_ALL
 
 # comment file /etc/zsh/zprofile in ArchLinux
-PATH=/bin:/usr/bin:/sbin
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
 
 # local zshenv
 [ -e $ZDOTDIR/.zshenv.local ] && source $ZDOTDIR/.zshenv.local
