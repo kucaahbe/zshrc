@@ -39,13 +39,13 @@ alias la='ls -la'
 alias df='df -h'
 alias du='du -h'
 
-alias -g Less='| less'
+alias -g L='| less'
 
 alias -g H='-h | less'
-alias -g Help='--help | less'
+alias -g He='--help | less'
 
 alias grep='grep --color=auto'
-alias -g Grep='| grep'
+alias -g G='| grep'
 
 alias gt='git'
 
