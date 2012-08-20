@@ -64,12 +64,7 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'   # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'          # end underline
 export LESS_TERMCAP_us=$'\E[01;32m'      # begin underline
 # editor
-if [ -n $DISPLAY ]
-then
-  EDITOR=gvim
-else
-  EDITOR=vim
-fi
+if [[ -n $DISPLAY ]] { EDITOR=gvim } else { EDITOR=vim }
 export EDITOR
 # history
 HISTFILE=$ZDOTDIR/.zhistory
