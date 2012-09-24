@@ -110,4 +110,4 @@ preexec() {
 }
 
 # local zshrc
-[ -e $ZDOTDIR/.zshrc.local ] && source $ZDOTDIR/.zshrc.local
+[ -e $ZDOTDIR/.zshrc.local ] && source $ZDOTDIR/.zshrc.local || :
