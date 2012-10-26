@@ -5,6 +5,9 @@ reload!() {
 source $ZDOTDIR/.zshrc
 }
 
+# custom completions
+fpath=($ZDOTDIR/.zsh/completion $fpath)
+
 # zle
 bindkey -e
 # setup zle color
