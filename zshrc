@@ -52,6 +52,7 @@ alias gt='git'
 alias find='noglob find'
 alias task='noglob task'
 alias rake='noglob rake'
+alias dpkg='noglob dpkg'
 
 # environment variables and zsh parameters
 export LESS='--no-init --quit-if-one-screen --ignore-case --RAW-CONTROL-CHARS --chop-long-lines'
