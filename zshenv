@@ -19,3 +19,5 @@ PATH=/bin:/usr/bin:/sbin:/usr/sbin
 [ -z "$HOME" ] || PATH=$HOME/bin:$PATH
 
 export PATH
+
+eval $( dircolors -b $HOME/.ls_colors )
