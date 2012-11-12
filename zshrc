@@ -94,7 +94,7 @@ zstyle ':vcs_info:*' formats       \
 
 # hooks
 # set xterm title
-term_title_dir="%1~"
+term_title_dir="%m>%1~"
 term_title_pts="%y%1(j.:%j.)"
 precmd() {
   case $TERM in
