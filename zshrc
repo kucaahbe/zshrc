@@ -56,6 +56,7 @@ alias find='noglob find'
 alias task='noglob task'
 alias rake='noglob rake'
 alias dpkg='noglob dpkg'
+#alias A='; notification-send'
 
 # environment variables and zsh parameters
 export LESS='--no-init --quit-if-one-screen --ignore-case --RAW-CONTROL-CHARS --chop-long-lines'
@@ -92,11 +93,65 @@ zstyle ':vcs_info:*' actionformats \
 zstyle ':vcs_info:*' formats       \
   '%s:%F{magenta}[%f%F{green}%b%f%F{magenta}]%f'
 
+# --- libnotify notifications for high duration commands ---
+
+# notification initialization:
+_current_cmd=""
+_current_cmd_start_time=0
+_current_cmd_end_time=0
+#_long_running_cmd=5 # 1 minute
+_long_running_cmd=60 # 1 minute
+
+# should be called from preexec hook in following form:
+# notification-remember-start-time "$1"
+notification-remember-start-time() {
+  _current_cmd_start_time="`date +%s`"
+  _current_cmd="$1"
+}
+
+# should be called first in precmd hook
+notification-perform() {
+  local exit_status=$?
+  _current_cmd_end_time="`date +%s`"
+  if [[ -n $_current_cmd && $((_current_cmd_end_time-_current_cmd_start_time)) -ge $_long_running_cmd ]]; then
+    notification-send $exit_status $_current_cmd
+    _current_cmd=""
+  fi
+}
+
+# sends actual notification
+# usage:
+# send-notification exit_status 'command being executed'
+notification-send() {
+  local exit_status=$1
+  # previous version, was used to retrieve command from current command line when used as alias
+  #local body="<b>`fc -l ${HISTCMD} | awk '{ n=2; while (n<NF) { printf "%s ", $n; n++ } }'`</b>"
+  local body="<b>$2</b>"
+  local summary="Z-shell - $TTY"
+  local icon
+  if [[ $exit_status -eq 0 ]]
+  then
+    body="$body SUCCESS"
+    icon="finish"
+
+  else
+    body="$body FAILURE"
+    icon="stop"
+  fi
+  # keep notify for 20 seconds, could not work for some reason
+  notify-send -t 20000 -i $icon -a zsh $summary $body
+}
+
+# --- end of libnotify notifications for high duration commands ---
+
 # hooks
 # set xterm title
 term_title_dir="%m>%1~"
 term_title_pts="%y%1(j.:%j.)"
+# executed before each prompt
 precmd() {
+  notification-perform
+
   case $TERM in
     xterm*)
       print -Pn "\e]0;$term_title_dir - $term_title_pts\a"
@@ -105,7 +160,10 @@ precmd() {
 
   vcs_info
 }
+# executed just after a command has been read and is about to be executed
 preexec() {
+  notification-remember-start-time "$1"
+
   case $TERM in
     xterm*)
       print -Pn "\e]0;($term_title_dir) %20>..>$1%<< \a"
