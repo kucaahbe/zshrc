@@ -98,8 +98,6 @@ zstyle ':vcs_info:*' formats       \
 # notification initialization:
 _current_cmd=""
 _current_cmd_start_time=0
-_current_cmd_end_time=0
-#_long_running_cmd=5 # 1 minute
 _long_running_cmd=60 # 1 minute
 
 # should be called from preexec hook in following form:
@@ -112,8 +110,7 @@ notification-remember-start-time() {
 # should be called first in precmd hook
 notification-perform() {
   local exit_status=$?
-  _current_cmd_end_time="`date +%s`"
-  if [[ -n $_current_cmd && $((_current_cmd_end_time-_current_cmd_start_time)) -ge $_long_running_cmd ]]; then
+  if [[ -n $_current_cmd && $((`date +%s`-_current_cmd_start_time)) -ge $_long_running_cmd ]]; then
     notification-send $exit_status $_current_cmd
     _current_cmd=""
   fi
