@@ -113,10 +113,11 @@ notification-remember-start-time() {
 # should be called first in precmd hook
 notification-perform() {
   local exit_status=$?
-  if [[ -n $_current_cmd && $((`date +%s`-_current_cmd_start_time)) -ge $_long_running_cmd ]]; then
+  if [[ ( -n $_current_cmd ) && ( $((`date +%s`-_current_cmd_start_time)) -ge $_long_running_cmd ) ]]
+  then
     notification-send $exit_status $_current_cmd
-    _current_cmd=""
   fi
+  _current_cmd=""
 }
 
 # sends actual notification
