@@ -35,28 +35,29 @@ zstyle ':completion:*:default' menu select=3
 #coolls() {
 #  ls --color=always -h $* | less
 #}
+
+# file system listing commands
 alias ls='ls --color=always -h'
 alias ll='ls -l'
 alias la='ls -la'
+alias dir='dir --color=auto -h -p'
+alias vdir='vdir --color=auto -h -p'
+alias t='tree'
 
 alias df='df -h'
 alias du='du -h'
 
 alias -g L='| less'
 
-alias -g H='-h | less'
-alias -g He='--help | less'
+alias -g H='--help 2>&1 | less'
 
 alias grep='grep --color=auto'
 alias -g G='| grep'
-
-alias gt='git'
 
 alias find='noglob find'
 alias task='noglob task'
 alias rake='noglob rake'
 alias dpkg='noglob dpkg'
-
 alias gem='noglob gem'
 
 #alias A='; notification-send'
