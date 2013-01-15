@@ -2,7 +2,7 @@
 
 # utility functions
 reload!() {
-source $ZDOTDIR/.zshrc
+exec $SHELL
 }
 
 # custom completions
@@ -20,7 +20,7 @@ zle_highlight=(
   )
 
 # compsys
-autoload  -U compinit
+autoload -U compinit
 compinit
 # context string :completion:function:completer:command:argument:tag
 # function - named function, typically blank
