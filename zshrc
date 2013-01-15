@@ -30,6 +30,7 @@ compinit
 # tag - used to discriminate between the types of matches a completion function can generate in a certain context.  Any completion function may use any tag name it likes, but a list of the more common ones is given below.
 # zstyle ':completion:function:completer:command:argument:tag' style style-options
 zstyle ':completion:*:default' menu select=3
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # aliases
 #coolls() {
