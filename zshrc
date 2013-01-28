@@ -147,6 +147,18 @@ notification-send() {
 
 # --- end of libnotify notifications for high duration commands ---
 
+# bundler
+
+chpwd_bundler() {
+  if [[ -d $PWD/bin && $PWD != $HOME ]] {
+    PATH=$PWD/bin:${PATH#$PWD/bin:}
+  } elif [[ $OLDPWD != $HOME ]] {
+    PATH=${PATH#$OLDPWD/bin:}
+  }
+}
+
+chpwd_functions=(chpwd_bundler)
+
 # hooks
 # set xterm title
 term_title_dir="%m>%1~"
