@@ -52,7 +52,7 @@ alias -g L='| less'
 
 alias -g H='--help 2>&1 | less'
 
-alias grep='grep --color=auto'
+alias grep='noglob grep --color=auto'
 alias -g G='| grep'
 
 alias find='noglob find'
