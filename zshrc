@@ -61,6 +61,8 @@ alias rake='noglob rake'
 alias dpkg='noglob dpkg'
 alias gem='noglob gem'
 
+alias pgrep='pgrep -l -f'
+
 #alias A='; notification-send'
 
 # environment variables and zsh parameters
