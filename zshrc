@@ -60,8 +60,10 @@ alias task='noglob task'
 alias rake='noglob rake'
 alias dpkg='noglob dpkg'
 alias gem='noglob gem'
+alias ansible='noglob ansible'
 
 alias pgrep='pgrep -l -f'
+alias tmux='tmux -2'
 
 #alias A='; notification-send'
 
