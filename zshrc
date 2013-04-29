@@ -18,6 +18,7 @@ zle_highlight=(
   suffix:fg=default,bg=default,standout
   special:fg=red,bg=default,bold
   )
+source ~/.zsh/zsh-syntax-highlighting.zsh
 
 # compsys
 autoload -U compinit
