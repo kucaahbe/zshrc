@@ -62,6 +62,7 @@ alias rake='noglob rake'
 alias dpkg='noglob dpkg'
 alias gem='noglob gem'
 alias ansible='noglob ansible'
+alias git='noglob git'
 
 alias pgrep='pgrep -l -f'
 alias tmux='tmux -2'
