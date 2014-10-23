@@ -21,3 +21,5 @@ PATH=/bin:/usr/bin:/sbin:/usr/sbin
 export PATH
 
 eval $( dircolors -b $HOME/.ls_colors )
+
+export PYTHONSTARTUP=$HOME/.pythonrc
