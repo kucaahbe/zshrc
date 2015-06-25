@@ -34,12 +34,16 @@ zstyle ':completion:*:default' menu select=3
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # aliases
-#coolls() {
-#  ls --color=always -h $* | less
-#}
 
 # file system listing commands
-alias ls='ls --color=always -h'
+case $(uname) in
+  Linux)
+    alias ls='ls --color=always -h'
+    ;;
+  Darwin)
+    alias ls='ls -G -h'
+    ;;
+esac
 alias ll='ls -l'
 alias la='ls -la'
 alias dir='dir --color=auto -h -p'
