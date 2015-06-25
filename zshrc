@@ -135,8 +135,8 @@ notification-send() {
   local exit_status=$1
   # previous version, was used to retrieve command from current command line when used as alias
   #local body="<b>`fc -l ${HISTCMD} | awk '{ n=2; while (n<NF) { printf "%s ", $n; n++ } }'`</b>"
-  local body="<b>$2</b>"
-  local summary="Z-shell - $TTY"
+  local body="'$2'"
+  local summary="Z shell - $TTY"
   local icon
   if [[ $exit_status -eq 0 ]]
   then
@@ -147,8 +147,19 @@ notification-send() {
     body="$body FAILURE"
     icon="stop"
   fi
-  # keep notify for 20 seconds, could not work for some reason
-  notify-send -t 20000 -i $icon -a zsh $summary $body
+
+  case $(uname) in
+    Linux)
+      # keep notification for 20 seconds, could not work for some reason
+      notify-send -t 20000 -i $icon -a zsh $summary $body
+      ;;
+    Darwin)
+      osascript -e "$(cat <<eof
+display notification "$body" with title "$summary" sound name "Glass"
+eof
+)"
+      ;;
+  esac
 }
 
 # --- end of libnotify notifications for high duration commands ---
