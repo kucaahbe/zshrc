@@ -12,6 +12,10 @@ export LC_MONETARY=ru_UA.UTF-8
 
 # comment file /etc/zsh/zprofile in ArchLinux
 PATH=/bin:/usr/bin:/sbin:/usr/sbin
+if [[ "$(uname)" = "Darwin" ]]; then
+  # OSX brew:
+  PATH=$PATH:/usr/local/bin
+fi
 
 # local zshenv
 [ -e $ZDOTDIR/.zshenv.local ] && source $ZDOTDIR/.zshenv.local
@@ -21,6 +25,9 @@ PATH=/bin:/usr/bin:/sbin:/usr/sbin
 
 export PATH
 
-eval $( dircolors -b $HOME/.ls_colors )
+if [[ "$(uname)" = "Linux" ]]; then
+  # dircolors is from GNU coreutls
+  eval $( dircolors -b $HOME/.ls_colors )
+fi
 
 export PYTHONSTARTUP=$HOME/.pythonrc
