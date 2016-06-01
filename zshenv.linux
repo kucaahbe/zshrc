@@ -1,0 +1,9 @@
+# dircolors is from GNU coreutls
+eval $( dircolors -b $HOME/.ls_colors )
+
+# editor
+if [[ -n $DISPLAY ]] {
+  EDITOR=gvim
+} else {
+  EDITOR=vim
+}

@@ -12,6 +12,8 @@ fi
 [ -L $ZSHDIR ] && rm -v $ZSHDIR
 ln -svf $PWD/zsh $ZSHDIR
 ln -svf $PWD/zshenv ~/.zshenv
+ln -svf $PWD/zshenv.linux ~/.zshenv.linux
+ln -svf $PWD/zshenv.osx ~/.zshenv.osx
 ln -svf $PWD/zprofile ~/.zprofile
 ln -svf $PWD/zshrc ~/.zshrc
 ln -svf $PWD/zlogin ~/.zlogin
