@@ -59,6 +59,7 @@ alias -g H='--help 2>&1 | less'
 
 alias grep='noglob grep --color=auto'
 alias -g G='| grep'
+alias -g Wc='| wc'
 
 alias find='noglob find'
 alias task='noglob task'
@@ -70,8 +71,6 @@ alias git='noglob git'
 
 alias pgrep='pgrep -l -f'
 alias tmux='tmux -2'
-
-#alias A='; notification-send'
 
 # environment variables and zsh parameters
 export LESS='--no-init --quit-if-one-screen --ignore-case --RAW-CONTROL-CHARS --chop-long-lines'
@@ -175,8 +174,6 @@ chpwd_bundler() {
   }
 }
 
-chpwd_functions=(chpwd_bundler)
-
 # hooks
 # set xterm title
 term_title_dir="%m>%1~"
@@ -203,6 +200,8 @@ preexec() {
       ;;
   esac
 }
+
+autoload -U add-zsh-hook
 
 # local zshrc
 [ -e $ZDOTDIR/.zshrc.local ] && source $ZDOTDIR/.zshrc.local || :

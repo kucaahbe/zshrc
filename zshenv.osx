@@ -4,4 +4,4 @@ PATH=$PATH:/usr/local/bin
 # editor
 EDITOR=vim
 whence mvim > /dev/null
-if [[ $? == 0 ]] { EDITOR=mvim }
+if [[ $? == 0 ]] { EDITOR='mvim -f' }
