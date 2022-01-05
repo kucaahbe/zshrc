@@ -2,10 +2,9 @@
 
 ZDOTDIR=$HOME
 
-# 'export' should presents, it allows env. variables to be used by other programms
 export LC_ALL=en_US.UTF-8 # for OSX
 export LANG=en_US.UTF-8
-# make sure LC_CTYPE is not 'C' in order vim and others could determine russian for example
+# make sure LC_CTYPE is not 'C' in order to vim and others could determine russian for example
 # on ubuntu: apt-get install language-pack-ru language-pack-ru-base
 export LC_TIME=ru_UA.UTF-8
 export LC_MONETARY=ru_UA.UTF-8
