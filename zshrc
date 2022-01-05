@@ -182,7 +182,7 @@ chpwd_bundler() {
 
 # hooks
 # set xterm title
-term_title_dir="%m>%1~"
+term_title_dir="%1~"
 term_title_pts="%y%1(j.:%j.)"
 # executed before each prompt
 precmd() {
@@ -190,7 +190,7 @@ precmd() {
 
   case $TERM in
     xterm*)
-      print -Pn "\e]0;$term_title_dir - $term_title_pts\a"
+      print -Pn "\e]0;$term_title_dir($term_title_pts)\a"
       ;;
   esac
 
