@@ -1,5 +1,18 @@
 # vim ft:sh
 
+# unique path array (tied with PATH):
+typeset -U path
+
+__user_path_prepend() {
+  local dir="$1"
+  [ -d "$dir" ] && path=("$dir" "$path[@]")
+}
+
+__user_path_append() {
+  local dir="$1"
+  [ -d "$dir" ] && path+=("$dir")
+}
+
 ZDOTDIR=$HOME
 
 export LC_ALL=en_US.UTF-8 # for OSX
@@ -9,15 +22,7 @@ export LANG=en_US.UTF-8
 export LC_TIME=ru_UA.UTF-8
 export LC_MONETARY=ru_UA.UTF-8
 
-# comment file /etc/zsh/zprofile in ArchLinux
-PATH=/bin:/usr/bin:/sbin:/usr/sbin
-
-# ~/bin should be before any other path
-[ -z "$HOME" ] || PATH=$HOME/bin:$PATH
-
-export PATH
-
-# OS  specific zshenvs
+# OS-specific zshenvs
 case "$(uname)" in
   ("Darwin")
     source ~/.zshenv.osx
@@ -30,6 +35,9 @@ esac
 # local zshenv
 [ -e $ZDOTDIR/.zshenv.local ] && source $ZDOTDIR/.zshenv.local
 
-export EDITOR
+__user_path_prepend /sbin
+__user_path_prepend /usr/sbin
+__user_path_prepend /bin
+__user_path_prepend /usr/bin
 
-export PYTHONSTARTUP=$HOME/.pythonrc
+export EDITOR

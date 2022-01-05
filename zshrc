@@ -215,3 +215,9 @@ autoload -U add-zsh-hook
 
 # local zshrc
 [ -e $ZDOTDIR/.zshrc.local ] && source $ZDOTDIR/.zshrc.local || :
+
+PYTHONSTARTUP=$HOME/.pythonrc
+[ -f "$PYTHONSTARTUP" ] && export PYTHONSTARTUP
+
+# ~/bin should be before any other path (but only in interactive shell)
+__user_path_prepend ~/bin
