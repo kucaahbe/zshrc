@@ -118,37 +118,29 @@ _current_cmd_start_time=0
 _long_running_cmd=60 # 1 minute
 
 # should be called from preexec hook in following form:
-# notification-remember-start-time "$1"
-notification-remember-start-time() {
+__user_notification_save_start_time() {
   _current_cmd_start_time="`date +%s`"
   _current_cmd="$1"
 }
 
 # should be called first in precmd hook
-notification-perform() {
+__user_notification_notify() {
   local exit_status=$?
-  if [[ ( -n $_current_cmd ) && ( $((`date +%s`-_current_cmd_start_time)) -ge $_long_running_cmd ) ]]
-  then
-    notification-send $exit_status $_current_cmd
+  if [[ ( -n $_current_cmd ) && ( $((`date +%s`-_current_cmd_start_time)) -ge $_long_running_cmd ) ]]; then
+    __user_notification_perform $exit_status $_current_cmd
   fi
   _current_cmd=""
 }
 
-# sends actual notification
-# usage:
-# send-notification exit_status 'command being executed'
-notification-send() {
+__user_notification_perform() {
   local exit_status=$1
-  # previous version, was used to retrieve command from current command line when used as alias
-  #local body="<b>`fc -l ${HISTCMD} | awk '{ n=2; while (n<NF) { printf "%s ", $n; n++ } }'`</b>"
   local body="'$2'"
   local summary="Z shell - $TTY"
   local icon
-  if [[ $exit_status -eq 0 ]]
-  then
+
+  if [[ $exit_status -eq 0 ]]; then
     body="$body SUCCESS"
     icon="finish"
-
   else
     body="$body FAILURE"
     icon="stop"
@@ -168,11 +160,34 @@ eof
   esac
 }
 
+__user_term_title_dir="%1~"
+__user_term_title_pts="%y%1(j.:%j.)"
+__user_set_xterm_title() {
+  case $TERM in
+    xterm*)
+      print -Pn "\e]0;$__user_term_title_dir($__user_term_title_pts)\a"
+      ;;
+  esac
+}
+__user_set_xterm_title_for_cmd() {
+  local cmd="$1"
+
+  case $TERM in
+    xterm*)
+      print -Pn "\e]0;($__user_term_title_dir) %20>..>$cmd%<< \a"
+      ;;
+  esac
+}
+
+# sends actual notification
+# usage:
+# send-notification exit_status 'command being executed'
+
 # --- end of libnotify notifications for high duration commands ---
 
 # bundler
 
-chpwd_bundler() {
+__user_chpwd_bundler() {
   if [[ -d $PWD/bin && $PWD != $HOME ]] {
     PATH=$PWD/bin:${PATH#$PWD/bin:}
   } elif [[ $OLDPWD != $HOME ]] {
@@ -180,31 +195,20 @@ chpwd_bundler() {
   }
 }
 
+#chpwd_functions=(__user_chpwd_bundler)
+
 # hooks
-# set xterm title
-term_title_dir="%1~"
-term_title_pts="%y%1(j.:%j.)"
 # executed before each prompt
 precmd() {
-  notification-perform
-
-  case $TERM in
-    xterm*)
-      print -Pn "\e]0;$term_title_dir($term_title_pts)\a"
-      ;;
-  esac
+  __user_notification_notify
+  __user_set_xterm_title
 
   vcs_info
 }
 # executed just after a command has been read and is about to be executed
 preexec() {
-  notification-remember-start-time "$1"
-
-  case $TERM in
-    xterm*)
-      print -Pn "\e]0;($term_title_dir) %20>..>$1%<< \a"
-      ;;
-  esac
+  __user_notification_save_start_time "$1"
+  __user_set_xterm_title_for_cmd "$1"
 }
 
 autoload -U add-zsh-hook
