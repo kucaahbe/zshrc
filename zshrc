@@ -35,6 +35,8 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # aliases
 
+alias ssh='TERM=xterm-256color ssh'
+
 # file system listing commands
 case $(uname) in
   Linux)
@@ -60,6 +62,8 @@ alias -g H='--help 2>&1 | less'
 alias grep='noglob grep --color=auto'
 alias -g G='| grep'
 alias -g Wc='| wc'
+alias -g Xargs='| xargs'
+alias -g Gsed='| xargs gsed -i'
 
 alias find='noglob find'
 alias task='noglob task'
@@ -71,6 +75,8 @@ alias git='noglob git'
 
 alias pgrep='pgrep -l -f'
 alias tmux='tmux -2'
+
+alias c++17='c++ -std=gnu++17 -g -Wall -Wextra -pedantic'
 
 # environment variables and zsh parameters
 export LESS='--no-init --quit-if-one-screen --ignore-case --RAW-CONTROL-CHARS --chop-long-lines'
