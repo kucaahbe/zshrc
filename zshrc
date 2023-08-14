@@ -100,7 +100,8 @@ setopt HIST_IGNORE_DUPS
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 # zsh prompt
 setopt PROMPT_SUBST
-PS1=$'%B[%b%F{green}%n%f%B%F{white}@%f%b%F{green}%m%f %F{yellow}%~%f%B]%b ${vcs_info_msg_0_}%E\n%F{red}%(?..%?)%f %B%(!.%F{red}.%F{magenta})%#%f%b%E '
+# the \033]7;file://localhost/${PWD}\033\\ are escape sequences to advise the terminal of the working directory
+PS1=$'\033]7;file:///${PWD}\033\\%B[%b%F{green}%n%f%B%F{white}@%f%b%F{green}%m%f %F{yellow}%~%f%B]%b ${vcs_info_msg_0_}%E\n%F{red}%(?..%?)%f %B%(!.%F{red}.%F{magenta})%#%f%b%E '
 RPS1=$'%1(j.[%j].) %F{green}%T%f'
 # VCS info
 autoload -Uz vcs_info
