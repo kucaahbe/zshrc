@@ -189,14 +189,17 @@ __user_set_xterm_title_for_cmd() {
 # bundler
 
 __user_chpwd_bundler() {
-  if [[ -d $PWD/bin && $PWD != $HOME ]] {
-    PATH=$PWD/bin:${PATH#$PWD/bin:}
-  } elif [[ $OLDPWD != $HOME ]] {
-    PATH=${PATH#$OLDPWD/bin:}
-  }
+  echo __user_chpwd_bundler, $PWD
+  #if [[ -d $PWD/bin && $PWD != $HOME ]] {
+  #  PATH=$PWD/bin:${PATH#$PWD/bin:}
+  #} elif [[ $OLDPWD != $HOME ]] {
+  #  PATH=${PATH#$OLDPWD/bin:}
+  #}
 }
 
-#chpwd_functions=(__user_chpwd_bundler)
+#chpwd_functions=(
+#  __user_chpwd_bundler
+#)
 
 # hooks
 # executed before each prompt
