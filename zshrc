@@ -32,6 +32,8 @@ compinit
 # zstyle ':completion:function:completer:command:argument:tag' style style-options
 zstyle ':completion:*:default' menu select=3
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+#zstyle ':completion:*:*:./bin/ssh:*' completer _complete _ignored _files
+#zstyle ':completion:*:*:./bin/ssh:*' file-sort modification reverse
 
 # aliases
 
