@@ -214,6 +214,11 @@ preexec() {
 
 autoload -U add-zsh-hook
 
+# 1password cli
+if [[ -x /usr/local/bin/op ]]; then
+  eval "$(op completion zsh)"; compdef _op op
+fi
+
 # local zshrc
 [ -e $ZDOTDIR/.zshrc.local ] && source $ZDOTDIR/.zshrc.local || :
 
