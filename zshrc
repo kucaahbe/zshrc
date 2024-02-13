@@ -229,6 +229,8 @@ if which nv > /dev/null; then
 fi
 export GIT_EDITOR
 
+__user_path_append /Applications/WezTerm.app/Contents/MacOS
+
 # local zshrc
 [ -e $ZDOTDIR/.zshrc.local ] && source $ZDOTDIR/.zshrc.local || :
 
