@@ -222,6 +222,13 @@ if [[ -x /usr/local/bin/op ]]; then
   eval "$(op completion zsh)"; compdef _op op
 fi
 
+GIT_EDITOR="vim +0 -f"
+ # neovide neovim GUI:
+if which nv > /dev/null; then
+  GIT_EDITOR="nv --no-fork +0 -- -f"
+fi
+export GIT_EDITOR
+
 # local zshrc
 [ -e $ZDOTDIR/.zshrc.local ] && source $ZDOTDIR/.zshrc.local || :
 
