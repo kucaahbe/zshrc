@@ -63,7 +63,7 @@ alias grep='noglob grep --color=auto'
 alias -g G='| grep'
 alias -g Wc='| wc'
 alias -g Xargs='| xargs'
-alias -g Gsed='| xargs gsed -i'
+alias -g Gsed='| xargs gsed'
 
 alias find='noglob find'
 alias task='noglob task'
