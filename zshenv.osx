@@ -14,3 +14,6 @@ fi
 EDITOR=vim
 whence mvim > /dev/null
 if [[ $? == 0 ]] { EDITOR='mvim -f' }
+
+# for mysqldump:
+__user_path_append "$(brew --prefix mysql-client@8.0)/bin"
