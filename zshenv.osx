@@ -2,6 +2,14 @@
 __user_path_prepend /usr/local/sbin
 __user_path_prepend /usr/local/bin
 
+# Add GHC (Haskell compiler) to the PATH, via https://ghcformacosx.github.io/
+export GHC_DOT_APP="/Applications/ghc-7.10.3.app"
+if [ -d "$GHC_DOT_APP" ]; then
+  __user_path_append $HOME/.local/bin
+  __user_path_append $HOME/.cabal/bin
+  __user_path_append $GHC_DOT_APP/Contents/bin
+fi
+
 # editor
 EDITOR=vim
 whence mvim > /dev/null
