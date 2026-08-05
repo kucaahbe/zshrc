@@ -195,23 +195,35 @@ __user_chpwd_bundler() {
   #}
 }
 
-#chpwd_functions=(
+__python_virtualenv() {
+  typeset -f deactivate > /dev/null
+  local deactivate=$?
+  local activate=$PWD/.venv/bin/activate
+
+  if [[ "${+VIRTUAL_ENV}" -eq 1 && $deactivate -eq 0 ]] {
+    # echo "nothing to do, already activated"
+  } elif [[ -f "$activate" ]] {
+    source $activate
+  }
+}
+
+chpwd_functions+=(
+  __python_virtualenv
 #  __user_chpwd_bundler
-#)
+)
 
 # hooks
 # executed before each prompt
-precmd() {
+precmd_functions+=(
   __user_notification_notify
   __user_set_xterm_title
-
   vcs_info
-}
+)
 # executed just after a command has been read and is about to be executed
-preexec() {
+preexec_functions+=(
   __user_notification_save_start_time "$1"
   __user_set_xterm_title_for_cmd "$1"
-}
+)
 
 autoload -U add-zsh-hook
 
