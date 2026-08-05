@@ -1,4 +1,4 @@
-# vim ft:sh
+# NOTE: this file is sourced for interactive zsh only
 
 # utility functions
 reload!() {

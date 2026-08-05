@@ -1,4 +1,4 @@
-# vim ft:sh
+# NOTE: this file is sourced for every zsh (login and/or interactive)
 
 # unique path array (tied with PATH):
 typeset -U path
