@@ -241,3 +241,27 @@ PYTHONSTARTUP=$HOME/.pythonrc
 
 # ~/bin should be before any other path (but only in interactive shell)
 __user_path_prepend ~/bin
+
+dk() {
+  local command=$1
+  if [[ "$command" = "sh" ]] {
+      local host=${2:-app}
+      docker-compose exec -e TERM=$TERM $host /bin/bash
+      return 0
+  }
+  if [[ "$command" = "dbg" ]] {
+    shift
+    local container_name="${1:-app}"
+    local container_idx="${2:-1}"
+
+    echo "if see nothig - press enter"
+    #docker-compose attach --detach-keys="ctrl-q" --index "$container_idx" "$container_name"
+    docker-compose attach --index "$container_idx" "$container_name"
+    return 0
+  }
+
+  shift
+  docker-compose exec app /app/bin/$command $*
+}
+
+source ~/.zsh/docker.zsh
