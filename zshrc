@@ -251,8 +251,8 @@ export NEOVIDE_FORK=true
 PYTHONSTARTUP=$HOME/.pythonrc
 [ -f "$PYTHONSTARTUP" ] && export PYTHONSTARTUP
 
-# ~/bin should be before any other path (but only in interactive shell)
-__user_path_prepend ~/bin
+# ~/.local/bin (interactive shell only): local binaries for interactive use
+__user_path_prepend ~/.local/bin
 
 dk() {
   local command=$1
