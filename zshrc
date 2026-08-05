@@ -228,12 +228,18 @@ preexec_functions+=(
 autoload -U add-zsh-hook
 
 GIT_EDITOR="vim +0 -f"
- # neovide neovim GUI:
-if which nv > /dev/null; then
-  GIT_EDITOR="nv --no-fork +0 -- -f"
+if type nvim > /dev/null; then
+  GIT_EDITOR="nvim +0 -f"
 fi
+
+# neovide neovim GUI:
+# if type nv > /dev/null; then
+#   GIT_EDITOR="nv --no-fork +0 -- -f"
+# fi
+
 export GIT_EDITOR
 
+export NEOVIDE_FORK=true
 
 [ -e $ZDOTDIR/.zshrc.local ] && source $ZDOTDIR/.zshrc.local || :
 
