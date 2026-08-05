@@ -75,6 +75,11 @@ alias tmux='tmux -2'
 
 # environment variables
 
+if type dircolors > /dev/null; then
+  # dircolors is a part of GNU coreutls (Linux-specific)
+  eval $( dircolors -b $HOME/.ls_colors )
+fi
+
 export LESS='--no-init --quit-if-one-screen --ignore-case --RAW-CONTROL-CHARS --chop-long-lines'
 # coloring man pages for `less`
 export LESS_TERMCAP_mb=$'\E[01;31m'      # begin blinking

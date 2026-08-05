@@ -22,16 +22,6 @@ export LANG=en_US.UTF-8
 export LC_TIME=ru_UA.UTF-8
 export LC_MONETARY=ru_UA.UTF-8
 
-# OS-specific zshenvs
-case "$(uname)" in
-  ("Darwin")
-    source ~/.zshenv.osx
-    ;;
-  ("Linux")
-    source ~/.zshenv.linux
-    ;;
-esac
-
 [ -e $ZDOTDIR/.zshenv.local ] && source $ZDOTDIR/.zshenv.local
 
 __user_path_prepend /sbin

@@ -11,8 +11,6 @@ install {
 
   ln `zsh`          `~/.zsh`
   ln `zshenv`       `~/.zshenv`
-  ln `zshenv.linux` `~/.zshenv.linux`
-  ln `zshenv.osx`   `~/.zshenv.osx`
   ln `zprofile`     `~/.zprofile`
   ln `zshrc`        `~/.zshrc`
   ln `zlogin`       `~/.zlogin`
