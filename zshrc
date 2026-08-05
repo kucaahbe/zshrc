@@ -1,9 +1,7 @@
 # NOTE: this file is sourced for interactive zsh only
 
 # utility functions
-reload!() {
-exec $SHELL
-}
+reload!() { exec $SHELL }
 
 # custom completions
 fpath=($ZDOTDIR/.zsh/completion $fpath)
@@ -50,9 +48,6 @@ case $(uname) in
 esac
 alias ll='ls -l'
 alias la='ls -la'
-alias dir='dir --color=auto -h -p'
-alias vdir='vdir --color=auto -h -p'
-alias t='tree'
 
 alias df='df -h'
 alias du='du -h'
@@ -78,9 +73,8 @@ alias git='noglob git'
 alias pgrep='pgrep -l -f'
 alias tmux='tmux -2'
 
-alias c++17='c++ -std=gnu++17 -g -Wall -Wextra -pedantic'
+# environment variables
 
-# environment variables and zsh parameters
 export LESS='--no-init --quit-if-one-screen --ignore-case --RAW-CONTROL-CHARS --chop-long-lines'
 # coloring man pages for `less`
 export LESS_TERMCAP_mb=$'\E[01;31m'      # begin blinking
@@ -90,7 +84,9 @@ export LESS_TERMCAP_se=$'\E[0m'          # end standout-mode
 export LESS_TERMCAP_so=$'\E[01;44;33m'   # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'          # end underline
 export LESS_TERMCAP_us=$'\E[01;32m'      # begin underline
-# history
+
+# zsh parameters
+
 HISTFILE=$ZDOTDIR/.zhistory
 HISTSIZE=1000
 SAVEHIST=1000
@@ -100,11 +96,11 @@ setopt HIST_IGNORE_DUPS
 #KEYBOARD_HACK='\' # to replace annoying characters from the end of commandline
 # chars that are part of the word, default: '*?_-.[]~=/&;!#$%^(){}<>' (removed "/")
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
-# zsh prompt
 setopt PROMPT_SUBST
 # the \033]7;file://localhost/${PWD}\033\\ are escape sequences to advise the terminal of the working directory
 PS1=$'\033]7;file:///${PWD}\033\\%B[%b%F{green}%n%f%B%F{white}@%f%b%F{green}%m%f %F{yellow}%~%f%B]%b ${vcs_info_msg_0_}%E\n%F{red}%(?..%?)%f %B%(!.%F{red}.%F{magenta})%#%f%b%E '
 RPS1=$'%1(j.[%j].) %F{green}%T%f'
+
 # VCS info
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
@@ -219,11 +215,6 @@ preexec() {
 
 autoload -U add-zsh-hook
 
-# 1password cli
-if [[ -x /usr/local/bin/op ]]; then
-  eval "$(op completion zsh)"; compdef _op op
-fi
-
 GIT_EDITOR="vim +0 -f"
  # neovide neovim GUI:
 if which nv > /dev/null; then
@@ -231,9 +222,7 @@ if which nv > /dev/null; then
 fi
 export GIT_EDITOR
 
-__user_path_append /Applications/WezTerm.app/Contents/MacOS
 
-# local zshrc
 [ -e $ZDOTDIR/.zshrc.local ] && source $ZDOTDIR/.zshrc.local || :
 
 PYTHONSTARTUP=$HOME/.pythonrc

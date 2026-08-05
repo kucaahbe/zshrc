@@ -32,7 +32,6 @@ case "$(uname)" in
     ;;
 esac
 
-# local zshenv
 [ -e $ZDOTDIR/.zshenv.local ] && source $ZDOTDIR/.zshenv.local
 
 __user_path_prepend /sbin
@@ -41,3 +40,4 @@ __user_path_prepend /bin
 __user_path_prepend /usr/bin
 
 export EDITOR
+[ -e "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"

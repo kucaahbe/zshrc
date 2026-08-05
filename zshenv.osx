@@ -9,11 +9,3 @@ if [ -d "$GHC_DOT_APP" ]; then
   __user_path_append $HOME/.cabal/bin
   __user_path_append $GHC_DOT_APP/Contents/bin
 fi
-
-# editor
-EDITOR=vim
-whence mvim > /dev/null
-if [[ $? == 0 ]] { EDITOR='mvim -f' }
-
-# for mysqldump:
-__user_path_append "$(brew --prefix mysql-client@8.0)/bin"
