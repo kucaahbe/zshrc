@@ -272,3 +272,5 @@ dk() {
 }
 
 source ~/.zsh/docker.zsh
+
+# TODO: check this out: https://github.com/mathiasbynens/dotfiles/blob/main/.macos
